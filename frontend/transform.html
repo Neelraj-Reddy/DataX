@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataX - Transform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/ultra-modern.css">
+</head>
+<body>
+  <!-- Modern Sidebar Navigation -->
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <i class="fas fa-database"></i>
+      </div>
+      <h2 class="sidebar-title">DataX</h2>
+    </div>
+    
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+        <a href="index.html" class="sidebar-nav-link">
+          <i class="fas fa-home sidebar-nav-icon"></i>
+          Dashboard
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="transform.html" class="sidebar-nav-link active">
+          <i class="fas fa-exchange-alt sidebar-nav-icon"></i>
+          Transform
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="load.html" class="sidebar-nav-link">
+          <i class="fas fa-upload sidebar-nav-icon"></i>
+          Load Data
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="lineage.html" class="sidebar-nav-link">
+          <i class="fas fa-project-diagram sidebar-nav-icon"></i>
+          Lineage
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="editor.html" class="sidebar-nav-link">
+          <i class="fas fa-code sidebar-nav-icon"></i>
+          SQL Editor
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <div class="page-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="page-title">Data Transformations</h1>
+          <p class="page-subtitle">Create and manage your data transformation workflows</p>
+        </div>
+        <button id="add-transform-btn" class="btn btn-primary btn-lg">
+          <i class="fas fa-plus" style="margin-right: 0.5rem;"></i>
+          Add Transform
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label" for="searchTransforms">
+            <i class="fas fa-search" style="margin-right: 0.5rem;"></i>
+            Search Transformations
+          </label>
+          <input type="text" id="searchTransforms" class="form-control" placeholder="Search by name, query, or dependencies...">
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Transform Form -->
+    <div id="add-transform-form" class="card mb-4 fade-in" style="display:none;">
+      <div class="card-header">
+        <h3 class="card-title" id="form-title">
+          <i class="fas fa-plus-circle text-accent" style="margin-right: 0.5rem;"></i>
+          Add New Transform
+        </h3>
+      </div>
+      <div class="card-body">
+        <form id="transform-form">
+          <div class="form-group">
+            <label class="form-label" for="transformName">Transform Name</label>
+            <input type="text" name="name" id="transformName" class="form-control" placeholder="Enter transformation name" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="transformQuery">SQL Query</label>
+            <textarea name="query" id="transformQuery" rows="6" class="form-control" placeholder="SELECT * FROM table WHERE condition..." required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Dependencies</label>
+            <div id="dependencies-checkboxes" class="bg-card p-3 rounded-lg border border-primary">
+              <p class="text-muted mb-2">Select transforms that this one depends on:</p>
+              <!-- Dependencies will be populated by JavaScript -->
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-end" style="gap: 1rem;">
+            <button type="button" id="cancel-btn" class="btn btn-secondary">
+              <i class="fas fa-times" style="margin-right: 0.5rem;"></i>
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save" style="margin-right: 0.5rem;"></i>
+              Save Transform
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Status Messages -->
+    <div id="status-message"></div>
+
+    <!-- Transforms List -->
+    <div id="transforms-list" class="transforms-grid">
+      <!-- Transform cards will be populated by JavaScript -->
+    </div>
+  </main>
+
+  <script src="script/transform.js"></script>
+</body>
+</html>

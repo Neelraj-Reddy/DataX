@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataX - SQL Editor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="styles/ultra-modern.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Modern Sidebar Navigation -->
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <i class="fas fa-database"></i>
+      </div>
+      <h2 class="sidebar-title">DataX</h2>
+    </div>
+    
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+        <a href="index.html" class="sidebar-nav-link">
+          <i class="fas fa-home sidebar-nav-icon"></i>
+          Dashboard
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="transform.html" class="sidebar-nav-link">
+          <i class="fas fa-exchange-alt sidebar-nav-icon"></i>
+          Transform
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="load.html" class="sidebar-nav-link">
+          <i class="fas fa-upload sidebar-nav-icon"></i>
+          Load Data
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="lineage.html" class="sidebar-nav-link">
+          <i class="fas fa-project-diagram sidebar-nav-icon"></i>
+          Lineage
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="editor.html" class="sidebar-nav-link active">
+          <i class="fas fa-code sidebar-nav-icon"></i>
+          SQL Editor
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">SQL Editor</h1>
+      <p class="page-subtitle">Write, test, and execute SQL queries with real-time feedback</p>
+    </div>
+
+    <!-- SQL Editor Section -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h3 class="card-title mb-0">
+            <i class="fas fa-code text-accent" style="margin-right: 0.5rem;"></i>
+            Query Editor
+          </h3>
+          <div class="d-flex" style="gap: 0.75rem;">
+            <button id="check-dep-btn" class="btn btn-secondary btn-sm">
+              <i class="fas fa-search" style="margin-right: 0.5rem;"></i>
+              Check Dependencies
+            </button>
+            <button id="run-query-btn" class="btn btn-primary btn-sm">
+              <i class="fas fa-play" style="margin-right: 0.5rem;"></i>
+              Execute Query
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body" style="padding: 0;">
+        <div class="sql-editor-container" style="position: relative;">
+          <textarea id="sql-input" class="form-control" rows="12" placeholder="-- Write your SQL query here
+SELECT * FROM users 
+WHERE created_date >= '2024-01-01';" style="font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; font-size: 14px; line-height: 1.5; border: none; border-radius: 0; background: var(--bg-secondary); resize: none;"></textarea>
+          <div class="sql-editor-footer" style="padding: 1rem; background: var(--bg-primary); border-top: 1px solid var(--border-primary); display: flex; justify-content: space-between; align-items: center;">
+            <div class="d-flex align-items-center" style="gap: 1rem;">
+              <span class="text-muted" style="font-size: 0.875rem;">
+                <i class="fas fa-keyboard" style="margin-right: 0.5rem;"></i>
+                Ctrl+Enter to execute
+              </span>
+              <span class="text-muted" style="font-size: 0.875rem;">
+                <i class="fas fa-clock" style="margin-right: 0.5rem;"></i>
+                Last executed: <span id="last-executed">Never</span>
+              </span>
+            </div>
+            <button class="btn btn-sm btn-secondary" onclick="document.getElementById('sql-input').value = ''">
+              <i class="fas fa-trash" style="margin-right: 0.5rem;"></i>
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+      <!-- Dependencies Results -->
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">
+            <i class="fas fa-sitemap text-accent" style="margin-right: 0.5rem;"></i>
+            Query Dependencies
+          </h4>
+        </div>
+        <div class="card-body">
+          <div id="dep-result">
+            <div class="text-center text-muted">
+              <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+              <p>Click "Check Dependencies" to analyze your query</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Query Results -->
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">
+            <i class="fas fa-table text-accent" style="margin-right: 0.5rem;"></i>
+            Query Results
+          </h4>
+        </div>
+        <div class="card-body">
+          <div id="query-result">
+            <div class="text-center text-muted">
+              <i class="fas fa-play-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+              <p>Execute a query to see results here</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Database Schema Browser -->
+    <div class="card mt-4">
+      <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <h4 class="card-title mb-0">
+            <i class="fas fa-database text-accent" style="margin-right: 0.5rem;"></i>
+            Database Schema
+          </h4>
+          <div class="form-group mb-0" style="max-width: 300px;">
+            <input type="text" id="table-search" class="form-control form-control-sm" placeholder="Search tables and columns...">
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="tables-schemas">
+          <div class="text-center text-muted">
+            <div class="loading" style="margin: 2rem auto;"></div>
+            <p>Loading database schema...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status Messages -->
+    <div id="status-message"></div>
+  </main>
+
+  <script src="script/editor.js"></script>
+</body>
+</html>

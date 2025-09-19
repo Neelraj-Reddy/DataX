@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataX - Load Data</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="styles/ultra-modern.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Modern Sidebar Navigation -->
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <i class="fas fa-database"></i>
+      </div>
+      <h2 class="sidebar-title">DataX</h2>
+    </div>
+    
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+        <a href="index.html" class="sidebar-nav-link">
+          <i class="fas fa-home sidebar-nav-icon"></i>
+          Dashboard
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="transform.html" class="sidebar-nav-link">
+          <i class="fas fa-exchange-alt sidebar-nav-icon"></i>
+          Transform
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="load.html" class="sidebar-nav-link active">
+          <i class="fas fa-upload sidebar-nav-icon"></i>
+          Load Data
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="lineage.html" class="sidebar-nav-link">
+          <i class="fas fa-project-diagram sidebar-nav-icon"></i>
+          Lineage
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="editor.html" class="sidebar-nav-link">
+          <i class="fas fa-code sidebar-nav-icon"></i>
+          SQL Editor
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <div class="page-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="page-title">Data Loading</h1>
+          <p class="page-subtitle">Configure and manage your data loading processes</p>
+        </div>
+        <button id="add-load-btn" class="btn btn-primary btn-lg">
+          <i class="fas fa-plus" style="margin-right: 0.5rem;"></i>
+          Add Load Profile
+        </button>
+      </div>
+    </div>
+
+    <!-- File Upload Section -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h3 class="card-title">
+          <i class="fas fa-cloud-upload-alt text-accent" style="margin-right: 0.5rem;"></i>
+          Upload Data Files
+        </h3>
+      </div>
+      <div class="card-body">
+        <div class="upload-area" style="border: 2px dashed var(--border-primary); border-radius: var(--radius-lg); padding: 3rem; text-align: center; background: var(--bg-secondary); transition: all var(--transition-normal);">
+          <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--accent-warm); margin-bottom: 1rem;"></i>
+          <h4 class="text-primary mb-3">Drag & Drop Files Here</h4>
+          <p class="text-muted mb-3">or click to browse files</p>
+          <input type="file" id="file-upload" multiple accept=".csv,.json,.xlsx,.sql" style="display: none;">
+          <button class="btn btn-secondary" onclick="document.getElementById('file-upload').click()">
+            <i class="fas fa-folder-open" style="margin-right: 0.5rem;"></i>
+            Browse Files
+          </button>
+          <p class="text-muted mt-3" style="font-size: 0.875rem;">Supported formats: CSV, JSON, XLSX, SQL</p>
+        </div>
+        <div id="upload-progress" style="display: none; margin-top: 1rem;">
+          <div class="progress" style="height: 8px; background: var(--bg-secondary); border-radius: var(--radius-full); overflow: hidden;">
+            <div class="progress-bar" style="background: var(--gradient-warm); transition: width 0.3s ease;"></div>
+          </div>
+          <p class="text-muted mt-2" id="upload-status">Uploading...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Load Form -->
+    <div id="add-load-form" class="card mb-4 fade-in" style="display:none;">
+      <div class="card-header">
+        <h3 class="card-title" id="form-title">
+          <i class="fas fa-plus-circle text-accent" style="margin-right: 0.5rem;"></i>
+          Add Load Profile
+        </h3>
+      </div>
+      <div class="card-body">
+        <form id="load-form">
+          <div class="form-group">
+            <label class="form-label" for="loadName">Profile Name</label>
+            <input type="text" name="name" id="loadName" class="form-control" placeholder="Enter load profile name" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="transformSelect">Source Transform</label>
+            <select name="transform_id" id="transform-select" class="form-control" required>
+              <option value="">Select a transform...</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="loadDescription">Description</label>
+            <textarea name="description" id="loadDescription" rows="3" class="form-control" placeholder="Describe this load profile..."></textarea>
+          </div>
+          
+          <div class="d-flex justify-content-end" style="gap: 1rem;">
+            <button type="button" id="cancel-btn" class="btn btn-secondary">
+              <i class="fas fa-times" style="margin-right: 0.5rem;"></i>
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save" style="margin-right: 0.5rem;"></i>
+              Save Profile
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Status Messages -->
+    <div id="status-message"></div>
+
+    <!-- Load Profiles List -->
+    <div id="loads-list" class="loads-grid">
+      <!-- Load profile cards will be populated by JavaScript -->
+    </div>
+  </main>
+
+  <script src="script/load.js"></script>
+</body>
+</html>

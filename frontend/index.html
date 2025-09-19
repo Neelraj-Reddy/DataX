@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataX - Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/ultra-modern.css">
+</head>
+<body>
+  <!-- Modern Sidebar Navigation -->
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <i class="fas fa-database"></i>
+      </div>
+      <h2 class="sidebar-title">DataX</h2>
+    </div>
+    
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+        <a href="index.html" class="sidebar-nav-link active">
+          <i class="fas fa-home sidebar-nav-icon"></i>
+          Dashboard
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="transform.html" class="sidebar-nav-link">
+          <i class="fas fa-exchange-alt sidebar-nav-icon"></i>
+          Transform
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="load.html" class="sidebar-nav-link">
+          <i class="fas fa-upload sidebar-nav-icon"></i>
+          Load Data
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="lineage.html" class="sidebar-nav-link">
+          <i class="fas fa-project-diagram sidebar-nav-icon"></i>
+          Lineage
+        </a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a href="editor.html" class="sidebar-nav-link">
+          <i class="fas fa-code sidebar-nav-icon"></i>
+          SQL Editor
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">DataX Platform</h1>
+      <p class="page-subtitle">Revolutionary data transformation and analytics platform</p>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="card">
+      <div class="card-body">
+        <div style="text-align: center; padding: var(--space-8) 0;">
+          <h2 style="font-size: var(--text-3xl); font-weight: var(--font-bold); color: var(--text-high); margin-bottom: var(--space-4);">
+            Transform Your Data Journey
+          </h2>
+          <p style="font-size: var(--text-lg); color: var(--text-low); margin-bottom: var(--space-8); max-width: 600px; margin-left: auto; margin-right: auto;">
+            Experience next-generation data processing with our cutting-edge platform. Load, transform, and visualize your data with unprecedented ease and sophistication.
+          </p>
+          <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+            <a href="load.html" class="btn btn-primary btn-lg">
+              <i class="fas fa-upload" style="margin-right: var(--space-2);"></i>
+              Load Data
+            </a>
+            <a href="transform.html" class="btn btn-secondary btn-lg">
+              <i class="fas fa-cogs" style="margin-right: var(--space-2);"></i>
+              Transform
+            </a>
+            <a href="lineage.html" class="btn btn-accent btn-lg">
+              <i class="fas fa-project-diagram" style="margin-right: var(--space-2);"></i>
+              Visualize
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-8);">
+      <!-- Data Loading Feature -->
+      <div class="card hover-lift">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-database" style="color: var(--primary-400); margin-right: var(--space-3);"></i>
+            Smart Data Loading
+          </h3>
+        </div>
+        <div class="card-body">
+          <p style="color: var(--text-medium); margin-bottom: var(--space-4);">
+            Seamlessly import data from multiple sources with intelligent parsing and validation. Support for CSV, JSON, Excel, and database connections.
+          </p>
+          <div style="margin-bottom: var(--space-6);">
+            <div class="badge badge-primary" style="margin-right: var(--space-2);">CSV</div>
+            <div class="badge badge-primary" style="margin-right: var(--space-2);">JSON</div>
+            <div class="badge badge-primary" style="margin-right: var(--space-2);">Excel</div>
+            <div class="badge badge-primary">Database</div>
+          </div>
+          <a href="load.html" class="btn btn-primary">
+            <i class="fas fa-arrow-right" style="margin-right: var(--space-2);"></i>
+            Start Loading
+          </a>
+        </div>
+      </div>
+
+      <!-- Data Transformation Feature -->
+      <div class="card hover-lift">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-magic" style="color: var(--secondary-400); margin-right: var(--space-3);"></i>
+            Advanced Transformations
+          </h3>
+        </div>
+        <div class="card-body">
+          <p style="color: var(--text-medium); margin-bottom: var(--space-4);">
+            Apply powerful transformations with our visual editor. Filter, aggregate, join, and manipulate data with enterprise-grade operations.
+          </p>
+          <div style="margin-bottom: var(--space-6);">
+            <div class="badge badge-secondary" style="margin-right: var(--space-2);">Filter</div>
+            <div class="badge badge-secondary" style="margin-right: var(--space-2);">Join</div>
+            <div class="badge badge-secondary" style="margin-right: var(--space-2);">Aggregate</div>
+            <div class="badge badge-secondary">Clean</div>
+          </div>
+          <a href="transform.html" class="btn btn-secondary">
+            <i class="fas fa-arrow-right" style="margin-right: var(--space-2);"></i>
+            Start Transforming
+          </a>
+        </div>
+      </div>
+
+      <!-- Data Visualization Feature -->
+      <div class="card hover-lift">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-chart-line" style="color: var(--accent-400); margin-right: var(--space-3);"></i>
+            Interactive Lineage
+          </h3>
+        </div>
+        <div class="card-body">
+          <p style="color: var(--text-medium); margin-bottom: var(--space-4);">
+            Visualize data flow and relationships with interactive network diagrams. Track data lineage and understand transformation impacts.
+          </p>
+          <div style="margin-bottom: var(--space-6);">
+            <div class="badge badge-accent" style="margin-right: var(--space-2);">Network</div>
+            <div class="badge badge-accent" style="margin-right: var(--space-2);">Flow</div>
+            <div class="badge badge-accent" style="margin-right: var(--space-2);">Lineage</div>
+            <div class="badge badge-accent">Impact</div>
+          </div>
+          <a href="lineage.html" class="btn btn-accent">
+            <i class="fas fa-arrow-right" style="margin-right: var(--space-2);"></i>
+            Explore Lineage
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Platform Statistics</h3>
+      </div>
+      <div class="card-body">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6); text-align: center;">
+          <div>
+            <div style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--primary-400); margin-bottom: var(--space-2);">
+              1.2M+
+            </div>
+            <div style="color: var(--text-low); font-weight: var(--font-medium);">Records Processed</div>
+          </div>
+          <div>
+            <div style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--secondary-400); margin-bottom: var(--space-2);">
+              500+
+            </div>
+            <div style="color: var(--text-low); font-weight: var(--font-medium);">Transformations</div>
+          </div>
+          <div>
+            <div style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--accent-400); margin-bottom: var(--space-2);">
+              99.9%
+            </div>
+            <div style="color: var(--text-low); font-weight: var(--font-medium);">Uptime</div>
+          </div>
+          <div>
+            <div style="font-size: var(--text-4xl); font-weight: var(--font-bold); color: var(--warning-400); margin-bottom: var(--space-2);">
+              24/7
+            </div>
+            <div style="color: var(--text-low); font-weight: var(--font-medium);">Support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script/home.js"></script>
+</body>
+</html>
